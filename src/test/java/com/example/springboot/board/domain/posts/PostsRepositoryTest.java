@@ -1,8 +1,10 @@
 package com.example.springboot.board.domain.posts;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.After;
@@ -39,5 +41,23 @@ public class PostsRepositoryTest {
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle(), is("테스트 게시글"));
         assertThat(posts.getContent(), is("테스트 본문"));
+    }
+
+    @Test
+    public void BaseTimeEntity_add() {
+        // GIVEN
+        LocalDateTime now = LocalDateTime.now();
+        postsRepository.save(Posts.builder()
+                                  .title("테스트 게시글")
+                                  .content("테스트 본문")
+                                  .author("id@email.com")
+                                  .build());
+        // WHEN
+        List<Posts> postsList = postsRepository.findAll();
+
+        // THEN
+        Posts posts = postsList.get(0);
+        assertTrue(posts.getCreatedDate().isAfter(now));
+        assertTrue(posts.getModifiedDate().isAfter(now));
     }
 }
