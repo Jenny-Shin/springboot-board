@@ -1,6 +1,5 @@
-package com.example.springboot.board.domain;
+package com.example.springboot.board.domain.posts;
 
-import static com.example.springboot.board.domain.Posts.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 

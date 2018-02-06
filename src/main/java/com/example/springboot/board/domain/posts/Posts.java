@@ -1,4 +1,4 @@
-package com.example.springboot.board.domain;
+package com.example.springboot.board.domain.posts;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
